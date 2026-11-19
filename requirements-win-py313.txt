@@ -1,0 +1,7 @@
+# Top-level packages requested for CPython 3.13 on 64-bit Windows.
+extract-msg==0.58.2
+pandas==3.1.1
+openpyxl==3.1.5
+python-dateutil==4.0.0
+tzdata==2026.6
+pypdf==7.1.1
