@@ -10,6 +10,9 @@
 - `python-dateutil==4.0.0`
 - `tzdata==2026.6`
 - `pypdf==7.1.1`（PDF 備援）
+- `pymupdf==2.1`（PDF 讀取、頁面渲染與文字抽取）
+- `rapidocr==3.10.0`（離線 OCR 與內附模型）
+- `onnxruntime==1.32.0`（RapidOCR CPU 推論引擎）
 
 `wheels/` 也包含上述套件需要的完整相依套件。帶有
 `cp313-cp313-win_amd64` 的 wheel 專供 64 位元 Windows CPython 3.13；
@@ -27,6 +30,25 @@ py -3.13 -m pip install --no-index --find-links .\wheels -r .\requirements-win-p
 
 ```powershell
 py -3.13 -m pip install --no-index --find-links .\wheels pandas openpyxl
+```
+
+## PDF OCR
+
+`PyMuPDF` 負責開啟 PDF、抽取既有文字，以及將掃描頁面渲染為影像；
+`RapidOCR` 負責辨識影像中的文字，並使用 `ONNX Runtime` 執行模型。
+RapidOCR 的預設模型已包含在 wheel 中，因此離線環境不需要另外下載模型，
+也不需要安裝 Tesseract 或 Poppler。
+
+安裝 OCR 套件：
+
+```powershell
+py -3.13 -m pip install --no-index --find-links .\wheels pymupdf rapidocr onnxruntime
+```
+
+安裝完成後可檢查 OCR 引擎：
+
+```powershell
+rapidocr check
 ```
 
 ## 驗證檔案
